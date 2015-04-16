@@ -15,9 +15,9 @@ var SearchResultList = React.createClass({
         log(this.props.data);
         var resultList = this.props.data.map(function (person) {
             return (
-                <Person person={person} />
+                <Person person={person} onInvite={this.props.onInvite}/>
             );
-        });
+        }.bind(this));
         return (
             <div className="b-search-bar__content">
                 <div className="b-search-result__content">

@@ -50,6 +50,9 @@ ul
     border: none;
     outline: 0;
     background: transparent url(../images/arrow-down.png) no-repeat 0 1px;
+    width: 12px;
+    height: 5px;
+
     &:hover
     {
         opacity: .9;

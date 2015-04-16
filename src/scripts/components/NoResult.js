@@ -1,7 +1,7 @@
 'use strict';
 
 var React   = require('react/addons'),
-    Strings = require('./Strings')();
+    strings = require('./Strings')();
 
 require('styles/NoResult.css');
 
@@ -10,13 +10,13 @@ var NoResult = React.createClass({
         return (
             <div className="b-search-bar__content_empty">
                 <span className="b-no-result">
-                    {Strings.get('message__no_result')}
+                    {strings.get('message__no_result')}
                 </span>
-                <a className="b-link" href={this.props.inviteAllUrl}>
-                    {Strings.get('link__invite_people')}
+                <a className="b-link" href={strings.get('link__invite_people__url')}>
+                    {strings.get('link__invite_people__text')}
                 </a>
                 <a className="b-link__logo" href={this.props.mainUrl}>
-                    {Strings.get('app_name')}
+                    {strings.get('app_name')}
                 </a>
             </div>
         );

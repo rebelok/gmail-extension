@@ -8,8 +8,8 @@ var React            = require('react/addons'),
     NoResult         = require('./NoResult'),
     SearchInProgress = require('./SearchInProgress'),
     SearchResultList = require('./SearchResultList'),
-    Strings = require('./Strings')(),
-    log              = console.log.bind(console, Strings.get('app_name')+': ');
+    strings          = require('./Strings')(),
+    log              = console.log.bind(console, strings.get('app_name') + ': ');
 
 var SearchBar = React.createClass({
     getInitialState  : function () {
@@ -17,7 +17,7 @@ var SearchBar = React.createClass({
     },
     componentDidMount: function () {
         $.ajax({
-            url      : Strings.get('search_url') + this.props.searchTerm,
+            url      : strings.get('search_url') + this.props.searchTerm,
             dataType : 'json',
             xhrFields: {withCredentials: true},
 
@@ -35,15 +35,14 @@ var SearchBar = React.createClass({
         });
     },
 
-
     render: function () {
         var searchBarContent;
         if (this.state.isSearching) {
             searchBarContent = <SearchInProgress />;
         } else if (this.state.hasResults) {
-            searchBarContent = <SearchResultList total={this.state.resultsCount} mainUrl={this.props.mainUrl} showAllUrl={this.props.showAllUrl} data={this.state.data.Persons}/>;
+            searchBarContent = <SearchResultList total={this.state.resultsCount} onInvite={this.props.onInvite} showAllUrl={strings.get('link__more_results') + this.props.searchTerm} data={this.state.data.Persons}/>;
         } else {
-            searchBarContent = <NoResult mainUrl={this.props.mainUrl} inviteAllUrl={this.props.inviteAllUrl}/>;
+            searchBarContent = <NoResult mainUrl={this.props.mainUrl}/>;
         }
         log('render - searchBar', searchBarContent, this.state);
         return (

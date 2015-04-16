@@ -6,14 +6,11 @@ var ChromeApp = function () {
         ReactTransitionGroup = React.addons.TransitionGroup,
         SearchBar = require('./SearchBar'),
         SideBar = require('./SideBar'),
-        Strings = require('./Strings')(),
+        strings = require('./Strings')(),
         $ = require('../vendor/jquery.js'),
         gMail = require('../vendor/gmail.js')($),
-        log = console.log.bind(console, Strings.get('app_name')+': '),
-        sideBarTemplate = '<div class="b-side-bar"></div>',
-        mainUrl = Strings.get('main_url');
-
-
+        log = console.log.bind(console, strings.get('app_name') + ': '),
+        sideBarTemplate = '<div class="b-side-bar"></div>';
 
     function init() {
         $(startApp);
@@ -71,11 +68,27 @@ var ChromeApp = function () {
     }
 
     function addToolbarInvite() {
-        if (!$('[id=":5"]').children(':visible').find('.G-Ni:contains("'+Strings.get('app_name')+'")').length) {
-            gMail.tools.add_toolbar_button(Strings.get('invite_button'), function () {
-                window.open(inviteUrl, '_blank');
+        if (!$('[id=":5"]').children(':visible').find('.G-Ni:contains("' + strings.get('app_name') + '")').length) {
+            gMail.tools.add_toolbar_button(strings.get('invite_button'), function () {
+                window.open(strings.get('link__invite_people__url'), '_blank');
             });
         }
+    }
+
+    function sendInvite(email) {
+        $.ajax({
+            url      : strings.get('link__invite_person__url'),
+            type     : 'POST',
+            data     : {email: email},
+            xhrFields: {withCredentials: true}
+        })
+            .done(function () {
+                log('invite ok');
+            })
+            .fail(function (data, a, b, c) {
+                log('invite failed');
+                log(data);
+            });
     }
 
     function initDefaultState() {
@@ -113,7 +126,7 @@ var ChromeApp = function () {
         log('searching: ', searchTerm);
         initSearchBar();
         React.render(
-            <SearchBar searchTerm={searchTerm} mainUrl={mainUrl}/>,
+            <SearchBar searchTerm={searchTerm} onInvite={sendInvite} />,
             document.querySelector('.b-search-bar')
         );
     }
@@ -132,7 +145,6 @@ var ChromeApp = function () {
         target.after('<div class="b-search-bar"></div>');
     }
 
-
     function drawSidebar(email) {
         if (!email)return;
         log('Drawing Sidebar for Email: ', email);
@@ -142,13 +154,14 @@ var ChromeApp = function () {
             document.querySelector('.b-side-bar')
         );
     }
+
     function initSideBar() {
         //if (IsRapportiveInstalled) {
         //    $('#rapportive-sidebar').after(sideBarTemplate);
         //    return;
         //}
         var sideBarContainer = $('.adC[role="complementary"]').children().first();
-        if (!sideBarContainer.find('.b-side-bar').length){
+        if (!sideBarContainer.find('.b-side-bar').length) {
             sideBarContainer.prepend(sideBarTemplate);
         }
     }
@@ -164,7 +177,6 @@ var ChromeApp = function () {
         log('Email is from: ', from);
         return from.email;
     }
-
 
     return {Init: init};
 }

@@ -19,7 +19,7 @@ var Person = React.createClass({
         return (
             <div className="b-person">
                 <Avatar url={this.props.person.AvatarUrl} fullName={this.state.fullName} />
-                <InviteButton />
+                <InviteButton onInvite={this.props.onInvite} emails={this.props.person.Emails} canInvite={this.props.person.CanInvite} />
                 <span className="b-person-name" >
                     {this.state.fullName}
                 </span>
