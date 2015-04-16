@@ -1,0 +1,42 @@
+.b-connections-list {
+    display: flex;
+    padding: 0 16px 0 0;
+}
+
+.b-connection-item {
+    padding: 0 10px;
+}
+
+.b-connection-item__small {
+    display: inline-block;
+    padding: 7px 8px;
+}
+
+.b-connections__short-list {
+    display: inline-block;
+    padding: 0 20px 0 0;
+}
+
+.b-connections {
+    position: relative;
+
+    .b-popup {
+        right: -10px;
+        top: 30px;
+        left: initial;
+    }
+}
+
+.b-connections__expander {
+    display: inline-block;
+    top: 50%;
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 24;
+}
+
+.b-connections__expander_expanded_yes {
+    z-index: 25;
+
+}

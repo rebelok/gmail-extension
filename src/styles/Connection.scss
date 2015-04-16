@@ -1,0 +1,58 @@
+.b-connection {
+    display: flex;
+    position: relative;
+
+    padding: 4px 12px;
+
+    border-bottom: 1px solid #eee;
+
+    align-items: center;
+}
+
+.b-connection__avatar {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    flex: 0 0 32px;
+}
+
+.b-connection__full-info {
+    display: flex;
+}
+
+.b-connections-expanded {
+    padding: 8px 0;
+}
+
+.b-connection__name-info {
+    line-height: 20px;
+
+    height: 20px;
+    padding: 0 20px;
+
+    flex: 1 1;
+
+    white-space: nowrap;
+}
+
+.b-connection__link {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+
+    width: 16px;
+    height: 13px;
+
+    transform: translateY(-50%);
+
+    background: url(../images/go_gray.png) center center no-repeat;
+}
+
+@media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
+    .b-connection__link {
+        background: url(../images/go_gray@2x.png) center center no-repeat;
+        background-size: 16px 13px;
+    }
+}

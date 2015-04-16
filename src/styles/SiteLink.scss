@@ -1,0 +1,16 @@
+.b-site-link {
+    width: 22px;
+    height: 19px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-image: url(../images/go.png);
+}
+
+@media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
+    .b-site-link {
+        background: transparent url(../images/go@2x.png) center center no-repeat;
+        background-size: 22px 19px;
+    }
+}
+

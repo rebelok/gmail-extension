@@ -1,0 +1,29 @@
+.b-emails {
+    display: inline-block;
+    position: relative;
+    .b-popup {
+        right: 0;
+    }
+}
+
+.b-email-item {
+    line-height: 20px;
+    font-size: 13px;
+    padding: 3px 16px;
+    white-space: nowrap;
+}
+
+.b-link-email {
+    color: #333;
+    cursor: pointer;
+}
+
+.b-expandable-list {
+    display: inline-block;
+    z-index: 1;
+    position: relative;
+}
+
+.b-expandable-list__expanded {
+    z-index: 25;
+}

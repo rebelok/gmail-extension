@@ -1,0 +1,18 @@
+.b-search-bar__content_empty {
+    font-size: 11px;
+    line-height: 46px;
+
+    height: 46px;
+    margin: 8px 0;
+    padding: 0;
+
+    cursor: default;
+    text-align: center;
+    white-space: nowrap;
+
+    color: #444;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 2px;
+    outline: 0;
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+}

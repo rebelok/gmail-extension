@@ -1,0 +1,33 @@
+.b-person {
+    height: 55px;
+    border-bottom: 1px solid #efefef;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.b-person-name {
+    @extend .b-position;
+    font-weight: bold;
+}
+
+.b-position {
+    flex: 0 0 130px;
+}
+
+.b-company {
+    @extend .b-position;
+
+}
+
+.b-emails {
+    @extend .b-position;
+}
+
+.b-email {
+    width: 110px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+}

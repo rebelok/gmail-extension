@@ -1,0 +1,80 @@
+.b-search-bar__content
+{
+    font-size: 11px;
+
+    padding: 0 0 10px;
+    margin: 8px 0;
+
+    cursor: default;
+    white-space: nowrap;
+
+    color: #444;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 2px;
+    outline: 0;
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+}
+
+.b-search-bar__content_searching_yes
+{
+    @extend .b-search-bar__content;
+
+    line-height: 46px;
+
+    height: 46px;
+    margin: 8px 0;
+    padding:0;
+
+    text-align: center;
+
+}
+
+ul
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    li
+    {
+        list-style: none;
+    }
+}
+.b-expandable-button
+{
+    margin-top: -6px;
+
+    vertical-align: middle;
+
+    opacity: .5;
+    border: none;
+    outline: 0;
+    background: transparent url(../images/arrow-down.png) no-repeat 0 1px;
+    &:hover
+    {
+        opacity: .9;
+    }
+}
+
+@media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
+    .b-expandable-button
+    {
+        background: transparent url(../images/arrow-down@2x.png) center center no-repeat;
+        background-size: 10px 5px;
+    }
+}
+
+.b-popup
+{
+    position: absolute;
+    top: 20px;
+
+    overflow: hidden;
+
+    transition: width 350ms cubic-bezier(.23, .5, .32, 1), height 350ms cubic-bezier(.23, .5, .32, 1), left 350ms cubic-bezier(.23, .5, .32, 1), top 350ms cubic-bezier(.23, .5, .32, 1), opacity 350ms cubic-bezier(.23, .5, .32, 1);
+
+    opacity: 1;
+    border: 1px solid rgb(170, 170, 170);
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, .298039) 0 2px 2px;
+}

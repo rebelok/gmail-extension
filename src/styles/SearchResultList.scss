@@ -1,0 +1,36 @@
+.b-search-result__header {
+    height: 40px;
+    padding: 0 8px;
+    line-height: 40px;
+}
+
+.b-showing-label {
+    padding: 0 15px 0 0;
+}
+
+.b-link {
+    color: #15c;
+
+    &:visited {
+        color: #15c;
+    }
+}
+
+.b-link__logo {
+    float: right;
+    color: #7bb800;
+    padding: 0 0 0 25px;
+
+    background-position: left center;;
+    background-repeat: no-repeat;
+    background-image: url(../images/logo.png);
+    background-size: 20px;
+}
+
+.b-search-result__list {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+
