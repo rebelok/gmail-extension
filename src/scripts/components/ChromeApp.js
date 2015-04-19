@@ -148,22 +148,26 @@ var ChromeApp = function () {
     function drawSidebar(email) {
         if (!email)return;
         log('Drawing Sidebar for Email: ', email);
-        initSideBar();
-        React.render(
-            <SideBar email={email}/>,
-            document.querySelector('.b-side-bar')
-        );
+        var target = getSideBarTarget();
+        if(target){
+            React.render(<SideBar email={email}/>, target);
+        }
     }
 
-    function initSideBar() {
+    function getSideBarTarget() {
         //if (IsRapportiveInstalled) {
         //    $('#rapportive-sidebar').after(sideBarTemplate);
         //    return;
         //}
         var sideBarContainer = $('.adC[role="complementary"]').children().first();
-        if (!sideBarContainer.find('.b-side-bar').length) {
-            sideBarContainer.prepend(sideBarTemplate);
+        var target = sideBarContainer.find('.b-side-bar');
+        log(target);
+
+        if (!target.length) {
+            target = sideBarContainer.prepend(sideBarTemplate).find('.b-side-bar');
+            log(target);
         }
+        return target[0];
     }
 
     // Helpers

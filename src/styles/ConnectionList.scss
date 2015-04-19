@@ -1,6 +1,13 @@
 .b-connections-list {
     display: flex;
     padding: 0 16px 0 0;
+    margin: 0;
+    list-style: none;
+}
+
+.b-connections-list__expanded {
+    display: block;
+    padding: 0;
 }
 
 .b-connection-item {
@@ -31,7 +38,7 @@
     display: inline-block;
     top: 50%;
     position: absolute;
-    right: 0;
+    right: 5px;
     transform: translateY(-50%);
     z-index: 24;
 }
@@ -39,4 +46,12 @@
 .b-connections__expander_expanded_yes {
     z-index: 25;
 
+}
+
+.b-main-item {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 110px;
+    display: inline-block;
 }

@@ -46,13 +46,18 @@
     height: 13px;
 
     transform: translateY(-50%);
+    opacity: 0.5;
 
-    background: url(../images/go_gray.png) center center no-repeat;
+    background: url(../images/go_dark.png) center center no-repeat;
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 @media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
     .b-connection__link {
-        background: url(../images/go_gray@2x.png) center center no-repeat;
+        background: url(../images/go_dark@2x.png) center center no-repeat;
         background-size: 16px 13px;
     }
 }

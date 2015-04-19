@@ -8,46 +8,44 @@ var React          = require('react/addons'),
     Strings        = require('./Strings')(),
     EmailList      = require('./EmailList');
 
-
 require('styles/PersonDetails.css');
 
 var PersonDetails = React.createClass({
-    getInitialState: function () {
-        return {fullName: this.props.person.FirstName + ' ' + this.props.person.LastName}
-    },
-    getEmailLink   : function (email) {
+    getEmailLink: function (email) {
         return <a title={email} className="b-link-email" href={'mailto://' + email}>{email}</a>;
     },
-    render         : function () {
-        var avatarStyle = {
-            backgroundImage: 'url(' + this.props.person.AvatarUrl + ')'
-        };
+    render      : function () {
         return (
             <div className="b-person-details">
-                <div className="b-avatar-big" style={avatarStyle}/>
-                <SiteLink url={this.props.person.Link} title={this.state.fullName} />
-                <div className="b-person-name__wrapper">
-                    <span className="b-person-name">
-                    {this.state.fullName}
-                    </span>
+                <SiteLink url={this.props.person.Link} title={this.props.person.FirstName + ' ' + this.props.person.LastName} />
+                <div className="b-person-details__main">
+                    <Avatar big={true} url={this.props.person.AvatarUrl} fullname={this.props.person.FirstName + ' ' + this.props.person.LastName}/>
+                    <div className="b-person-details__text">
+                        <div className="b-person-details__name">
+                          {this.props.person.FirstName + ' ' + this.props.person.LastName}
+                        </div>
+                    {this.props.person.Position ?
+                        <div className="b-person-details__position">
+                            {this.props.person.Position}
+                        </div>
+                        : null}
+                    {this.props.person.CompanyName ?
+                        <div className="b-person-details__company">
+                            {this.props.person.CompanyName}
+                        </div>
+                        : null}
+                    </div>
                 </div>
-                <InviteButton />
-                <div className="b-position">
-                    {this.props.person.Position}
-                </div>
-                <div className="b-company">
-                    {this.props.person.CompanyName}
-                </div>
-            {this.props.person.Phones.length ?
-                <div className="b-phone-list">
-                    <EmailList data={this.props.person.Phones} />
-                </div>
-                : null}
-            {this.props.person.Emails.length ?
-                <div className="b-email-list">
-                    <EmailList data={this.props.person.Emails} template={this.getEmailLink}/>
-                </div>
-                : null}
+                {this.props.person.Phones.length ?
+                    <div className="b-phone-list">
+                        <EmailList data={this.props.person.Phones} />
+                    </div>
+                    : null}
+                {this.props.person.Emails.length ?
+                    <div className="b-email-list">
+                        <EmailList data={this.props.person.Emails} template={this.getEmailLink}/>
+                    </div>
+                    : null}
                 <div className="b-connections__wrapper">
                     <h2 className="b-connections__title">
                     You know {this.props.person.FirstName} through
@@ -55,6 +53,8 @@ var PersonDetails = React.createClass({
                     <ConnectionList data={this.props.person.Connections} />
                 </div>
                 <div className="b-sidebar__footer">
+                    <InviteButton emails={this.props.person.Emails} canInvite={this.props.person.CanInvite} onInvite={this.props.onInvite} />
+
                     <a className="b-link__logo" href={this.props.mainUrl}>
                         {Strings.get('app_name')}
                     </a>

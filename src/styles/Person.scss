@@ -1,33 +1,46 @@
 .b-person {
     height: 55px;
-    border-bottom: 1px solid #efefef;
     display: flex;
     align-items: center;
     align-content: center;
+    background-color: #fff;
+    margin:1px 0 0;
 }
 
-.b-person-name {
-    @extend .b-position;
-    font-weight: bold;
+%ellipsis{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-.b-position {
+%flex130{
     flex: 0 0 130px;
 }
 
-.b-company {
-    @extend .b-position;
+.b-person-name {
+    font-weight: bold;
 
+    @extend %flex130;
+    @extend %ellipsis;
+}
+
+.b-position {
+    @extend %flex130;
+    @extend %ellipsis;
+}
+
+.b-company {
+    @extend %flex130;
+    @extend %ellipsis;
 }
 
 .b-emails {
-    @extend .b-position;
+    @extend %flex130;
 }
 
 .b-email {
     width: 110px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     display: inline-block;
-    overflow: hidden;
+
+    @extend %ellipsis;
 }

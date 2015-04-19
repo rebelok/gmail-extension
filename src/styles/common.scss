@@ -1,3 +1,66 @@
 .b-list{
     padding:8px 0;
 }
+
+.b-expandable-button
+{
+    margin-top: -3px;
+
+    vertical-align: middle;
+
+    opacity: .5;
+    border: none;
+    outline: 0;
+    background: transparent url(../images/arrow-down.png) no-repeat center center;
+    width: 12px;
+    height: 5px;
+
+    &:hover
+    {
+        opacity: .9;
+    }
+}
+
+@media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
+    .b-expandable-button
+    {
+        background: transparent url(../images/arrow-down@2x.png) center center no-repeat;
+        background-size: 10px 5px;
+    }
+}
+
+.b-popup
+{
+    position: absolute;
+    top: 20px;
+
+    overflow: hidden;
+
+    transition: width 350ms cubic-bezier(.23, .5, .32, 1), height 350ms cubic-bezier(.23, .5, .32, 1), left 350ms cubic-bezier(.23, .5, .32, 1), top 350ms cubic-bezier(.23, .5, .32, 1), opacity 350ms cubic-bezier(.23, .5, .32, 1);
+
+    opacity: 1;
+    border: 1px solid rgb(170, 170, 170);
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, .298039) 0 2px 2px;
+}
+
+
+/* ANIMATION */
+
+.appear-enter {
+    opacity: 0.01;
+    transition: opacity .5s ease-in;
+}
+
+.appear-enter.appear-enter-active {
+    opacity: 1;
+}
+
+.appear-leave {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+}
+
+.appear-leave.appear-leave-active {
+    opacity: 0.01;
+}

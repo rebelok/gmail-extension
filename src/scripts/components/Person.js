@@ -20,13 +20,13 @@ var Person = React.createClass({
             <div className="b-person">
                 <Avatar url={this.props.person.AvatarUrl} fullName={this.state.fullName} />
                 <InviteButton onInvite={this.props.onInvite} emails={this.props.person.Emails} canInvite={this.props.person.CanInvite} />
-                <span className="b-person-name" >
+                <span className="b-person-name" title={this.state.fullName}>
                     {this.state.fullName}
                 </span>
-                <span className="b-position">
+                <span className="b-position" title={this.props.person.Position}>
                     {this.props.person.Position}
                 </span>
-                <span className="b-company">
+                <span className="b-company" title={this.props.person.CompanyName}>
                     {this.props.person.CompanyName}
                 </span>
                 <EmailList data={this.props.person.Emails} template={this.getEmailLink}/>

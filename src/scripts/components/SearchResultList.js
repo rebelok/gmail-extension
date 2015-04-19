@@ -1,9 +1,10 @@
 'use strict';
 
-var React   = require('react/addons'),
-    Person  = require('./Person'),
-    Strings = require('./Strings')(),
-    log     = console.log.bind(console, Strings.get('app_name') + ': ');
+var React            = require('react/addons'),
+    Person           = require('./Person'),
+    OutsideNetHeader = require('./OutsideNetHeader'),
+    strings          = require('./Strings')(),
+    log              = console.log.bind(console, strings.get('app_name') + ': ');
 
 require('styles/SearchResultList.css');
 
@@ -13,9 +14,20 @@ var SearchResultList = React.createClass({
     },
     render         : function () {
         log(this.props.data);
-        var resultList = this.props.data.map(function (person) {
+        var insideNetwork = true;
+        var additional;
+        this.props.data[1].Proximity = 0;
+        var resultList = this.props.data.map(function (person, index) {
+            additional = null;
+            if (insideNetwork && person.Proximity === 0) {
+                insideNetwork = false;
+                additional = <OutsideNetHeader count={this.props.data.length - index}/>;
+            }
             return (
-                <Person person={person} onInvite={this.props.onInvite}/>
+                <div>
+                    {additional}
+                    <Person person={person} onInvite={this.props.onInvite}/>
+                </div>
             );
         }.bind(this));
         return (
@@ -29,12 +41,12 @@ var SearchResultList = React.createClass({
                         </a>
 
                         <a className="b-link__logo" href={this.props.mainUrl}>
-                            {Strings.get('app_name')}
+                            {strings.get('app_name')}
                         </a>
                     </div>
-                    <ul className="b-search-result__list">
+                    <div className="b-search-result__list">
                         {resultList}
-                    </ul>
+                    </div>
                 </div>
             </div>
         );

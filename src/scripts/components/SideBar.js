@@ -9,12 +9,20 @@ var React         = require('react/addons'),
 require('styles/SideBar.css');
 
 var SideBar = React.createClass({
-    //getInitialState  : function () {
-    //    return {};
-    //},
-    componentDidMount: function () {
+    getInitialState          : function () {
+        return {};
+    },
+    componentDidMount        : function () {
+        this.update(this.props.email)
+    },
+    componentWillReceiveProps: function (nextProps) {
+        if (this.props.email !== nextProps.email) {
+            this.update(nextProps.email)
+        }
+    },
+    update                   : function (email) {
         $.ajax({
-            url      : Strings.get('search_url') + this.props.email,
+            url      : Strings.get('search_url') + email,
             dataType : 'json',
             xhrFields: {withCredentials: true},
 
@@ -27,13 +35,14 @@ var SideBar = React.createClass({
 
             error: function (xhr, status, err) {
                 this.setState({isSearching: false, hasResults: false, data: {}})
-                console.error(this.props.url, status, err.toString());
+                console.error(status, err.toString());
             }.bind(this)
         });
     },
-    render           : function () {
+    render                   : function () {
+        console.log('render');
         return (
-            this.state && this.state.data ? <PersonDetails person={this.state.data} /> : null
+            this.state.data ? <PersonDetails person={this.state.data} /> : null
         );
     }
 });

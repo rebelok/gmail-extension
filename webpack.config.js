@@ -47,7 +47,10 @@ module.exports = {
     },  {
       test: /\.css$/,
       loader: 'style-loader!css-loader'
-    }, {
+    },{
+        test: /\.scss/,
+        loader: 'style-loader!css-loader!sass-loader?outputStyle=isExpanded'
+    },  {
       test: /\.(png)$/,
         loader: 'url-loader?limit=100000&mimetype=image/png'
     }]

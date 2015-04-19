@@ -88,7 +88,7 @@ var ConnectionList = React.createClass({
                         <button className="b-expandable-button" onClick={this.toggleExpand}/>
                         { this.state.isExpanded ?
                             <div className="b-popup">
-                                <ul className="b-connections-list__expanded"> {connections} </ul>
+                                <ul className="b-connections-list b-connections-list__expanded"> {connections} </ul>
                             </div>
                             : null }
                     </div>

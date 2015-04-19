@@ -1,16 +1,21 @@
 .b-site-link {
-    width: 22px;
-    height: 19px;
+    width: 16px;
+    height: 13px;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-image: url(../images/go.png);
+    top: 4px;
+    right: 4px;
+    background-image: url(../images/go_dark.png);
+    opacity: 0.5;
+
+    &:hover{
+        opacity:1;
+    }
 }
 
 @media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
     .b-site-link {
-        background: transparent url(../images/go@2x.png) center center no-repeat;
-        background-size: 22px 19px;
+        background: transparent url(../images/go_dark@2x.png) center center no-repeat;
+        background-size: 16px 13px;
     }
 }
 

@@ -12,10 +12,11 @@
 
 .b-invite-button__state_passive {
     background: url(../images/logo.png);
-    width: 40px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    margin: 8px;
 }
