@@ -16,7 +16,6 @@ var SearchResultList = React.createClass({
         log(this.props.data);
         var insideNetwork = true;
         var additional;
-        this.props.data[1].Proximity = 0;
         var resultList = this.props.data.map(function (person, index) {
             additional = null;
             if (insideNetwork && person.Proximity === 0) {

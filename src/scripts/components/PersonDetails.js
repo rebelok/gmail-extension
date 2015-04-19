@@ -14,6 +14,9 @@ var PersonDetails = React.createClass({
     getEmailLink: function (email) {
         return <a title={email} className="b-link-email" href={'mailto://' + email}>{email}</a>;
     },
+    getPhoneItem   : function (phone) {
+        return <span>{phone}</span>;
+    },
     render      : function () {
         return (
             <div className="b-person-details">
@@ -38,7 +41,7 @@ var PersonDetails = React.createClass({
                 </div>
                 {this.props.person.Phones.length ?
                     <div className="b-phone-list">
-                        <EmailList data={this.props.person.Phones} />
+                        <EmailList data={this.props.person.Phones} template={this.getPhoneItem}/>
                     </div>
                     : null}
                 {this.props.person.Emails.length ?

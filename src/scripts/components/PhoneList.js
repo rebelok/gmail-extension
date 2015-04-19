@@ -1,17 +1,14 @@
 'use strict';
 
-var React = require('react/addons');
+var React = require('react/addons'),
+    PopupStateMixin = require('./PopupStateMixin');
 
 require('styles/PhoneList.css');
 
 var PhoneList = React.createClass({
-    toggleExpand   : function () {
-        var state = this.state;
-        state.isExpanded = !state.isExpanded;
-        this.setState(state);
-    },
+    mixins         : [PopupStateMixin],
     getInitialState: function () {
-        return {expanded: false, isExpandable: this.props.data.length > 1};
+        return {isExpandable: this.props.data.length > 1};
     },
     render: function () {
         var phones = this.props.data.map(function (phone) {
@@ -24,7 +21,7 @@ var PhoneList = React.createClass({
     return (
         <div className="b-phones">
             <span className="b-phone">{this.props.data[0]}</span>
-                {this.state.isExpandable ?
+                {this.props.data.length>1 ?
                     <span>
                         <button onClick={this.toggleExpand}/>
                         { this.state.isExpanded ? <ul> {phones} </ul> : null }
