@@ -150,7 +150,7 @@ var ChromeApp = function () {
         log('Drawing Sidebar for Email: ', email);
         var target = getSideBarTarget();
         if(target){
-            React.render(<SideBar email={email}/>, target);
+            React.render(<SideBar email={email} onInvite={sendInvite}/>, target);
         }
     }
 

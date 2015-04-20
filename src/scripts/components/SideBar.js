@@ -3,8 +3,11 @@
 var React         = require('react/addons'),
     $             = require('../vendor/jquery.js'),
     PersonDetails = require('./PersonDetails'),
-    Strings       = require('./Strings')(),
-    log           = console.log.bind(console, Strings.get('app_name') + ': ');
+    strings       = require('./Strings')(),
+    ConnectionList = require('./ConnectionList'),
+    InviteButton   = require('./InviteButton'),
+    EmailList      = require('./EmailList'),
+    log           = console.log.bind(console, strings.get('app_name') + ': ');
 
 require('styles/SideBar.css');
 
@@ -22,7 +25,7 @@ var SideBar = React.createClass({
     },
     update                   : function (email) {
         $.ajax({
-            url      : Strings.get('search_url') + email,
+            url      : strings.get('search_url') + email,
             dataType : 'json',
             xhrFields: {withCredentials: true},
 
@@ -39,10 +42,42 @@ var SideBar = React.createClass({
             }.bind(this)
         });
     },
+    getEmailLink             : function (email) {
+        return <a title={email} className="b-link-email" href={'mailto://' + email}>{email}</a>;
+    },
+    getPhoneItem             : function (phone) {
+        return <span>{phone}</span>;
+    },
     render                   : function () {
-        console.log('render');
         return (
-            this.state.data ? <PersonDetails person={this.state.data} /> : null
+            this.state.data ?
+                <div>
+                    <PersonDetails person={this.state.data} />
+                      {this.state.data.Phones ?
+                          <div className="b-expandable-list">
+                              <EmailList data={this.state.data.Phones} template={this.getPhoneItem}/>
+                          </div>
+                          : null}
+                {this.state.data.Emails ?
+                    <div className="b-expandable-list">
+                        <EmailList data={this.state.data.Emails} template={this.getEmailLink}/>
+                    </div>
+                    : null}
+                    <div className="b-connections__wrapper">
+                        <h2 className="b-connections__title">
+                        You know {this.state.data.FirstName} through
+                        </h2>
+                        <ConnectionList data={this.state.data.Connections} />
+                    </div>
+                    <div className="b-sidebar__footer">
+                        <InviteButton emails={this.state.data.Emails} canInvite={this.state.data.CanInvite} onInvite={this.props.onInvite} />
+
+                        <a className="b-link__logo" href={strings.get('main_url')}>
+                            {strings.get('app_name')}
+                        </a>
+                    </div>
+                </div>
+                : null
         );
     }
 });

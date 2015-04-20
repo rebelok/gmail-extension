@@ -13,22 +13,20 @@ var EmailList = React.createClass({
     render      : function () {
         var generateListItem = function (listItem) {
             return (
-                    <li title={listItem}  className="b-email-item">
+                <li title={listItem}  className="b-email-item">
                         {this.props.template(listItem)}
-                    </li>
+                </li>
             );
         }.bind(this);
         var list = this.props.data.map(generateListItem);
         return (
-            <div className="b-emails">
-            {
-                    <div title={this.props.data[0]} className="b-main-item">
+            <div className="b-info-row">
+                <div title={this.props.data[0]} className="b-main-item">
                         {this.props.template(this.props.data[0])}
-                    </div>
-                }
+                </div>
 
                 {this.props.data.length > 1 ?
-                    <div className={this.state.open ? 'b-expandable-list b-expandable-list__expanded' : 'b-expandable-list' }>
+                    <div className={this.state.open ? 'b-expander b-expander__expanded' : 'b-expander' }>
                         <button className="b-expandable-button" onClick={this.toggleExpand}/>
                         { this.state.open ? <div className="b-popup">
                             <ul className="b-list"> {list} </ul>

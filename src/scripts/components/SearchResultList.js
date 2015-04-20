@@ -23,7 +23,7 @@ var SearchResultList = React.createClass({
                 additional = <OutsideNetHeader count={this.props.data.length - index}/>;
             }
             return (
-                <div>
+                <div key={person.Id}>
                     {additional}
                     <Person person={person} onInvite={this.props.onInvite}/>
                 </div>

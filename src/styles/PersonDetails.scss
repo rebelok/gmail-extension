@@ -7,43 +7,12 @@
         flex:0 0 72px;
     }
 
-    .b-phone-list {
-        margin: 10px;
-    }
 
-    .b-email-list {
-        margin: 10px 0;
-    }
 
-    .b-email {
-        max-width: 190px;
-        width: auto;
-    }
+}
 
-    .b-main-item {
-        max-width: 190px;
-        width: auto;
-        margin-left: 10px;
-    }
-
-    .b-connections__title{
-        margin: 0;
-        padding: 8px;
-    }
-
-    .b-invite-button {
-        float: left;
-    }
-
-    .b-invite-button__state_passive {
-        background: transparent;
-        width: auto;
-        height: auto;
-        margin: 0;
-        &:before {
-            content: 'Already a member'
-        }
-    }
+.b-expandable-list {
+    margin: 10px 0;
 }
 
 .b-person-details__name {

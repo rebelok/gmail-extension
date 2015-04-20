@@ -1,4 +1,4 @@
-.b-emails {
+.b-info-row {
     display: inline-block;
     position: relative;
     .b-popup {
@@ -18,12 +18,12 @@
     cursor: pointer;
 }
 
-.b-expandable-list {
+.b-expander {
     display: inline-block;
     z-index: 1;
     position: relative;
 }
 
-.b-expandable-list__expanded {
+.b-expander__expanded {
     z-index: 25;
 }

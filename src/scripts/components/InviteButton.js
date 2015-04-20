@@ -14,7 +14,7 @@ var InviteButton = React.createClass({
             //todo move invite request here
         },
         componentWillReceiveProps: function (nextProps) {
-            this.setState({canInvite: nextProps.canInvite && nextProps.b-avatar.emails});
+            this.setState({canInvite: nextProps.canInvite && nextProps.emails});
         },
         render                   : function () {
             var content = this.state.canInvite ?
