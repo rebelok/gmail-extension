@@ -12,9 +12,12 @@ var ConnectionPreview = React.createClass({
         this.setPopupState(!this.state.open);
     },
     render     : function () {
+        var style = {backgroundImage: 'url('+this.props.data.AvatarUrl+')'};
         return (
-            <div className="b-connection-preview">
-                <img onClick={this.togglePopup} className="b-connection__avatar" src={this.props.data.AvatarUrl} alt={this.props.data.FirstName + ' ' + this.props.data.LastName} title={this.props.data.FirstName + ' ' + this.props.data.LastName}/>
+            <div className={this.state.open ? 'b-connection-preview b-connection-preview__expanded' : 'b-connection-preview'}>
+                <span className="b-avatar-border">
+                    <span onClick={this.togglePopup} style={style} className="b-connection__avatar" title={this.props.data.FirstName + ' ' + this.props.data.LastName}/>
+                </span>
                 {
                     this.state.open ?
                         <div className="b-popup">

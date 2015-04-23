@@ -1,4 +1,8 @@
 .b-connection-preview{
     display: inline;
     position: relative;
+    z-index: 1;
+}
+.b-connection-preview__expanded{
+    z-index: 2;
 }

@@ -18,9 +18,13 @@ var Connection = React.createClass({
         };
     },
     render         : function () {
+        var style = {backgroundImage: 'url(' + this.props.data.AvatarUrl + ')'};
+
         return (
             <div className="b-connection">
-                <img className="b-connection__avatar" src={this.props.data.AvatarUrl} alt={this.state.fullName} title={this.state.fullName} />
+                <span className="b-avatar-border">
+                    <span onClick={this.togglePopup}  style={style}  className="b-connection__avatar" title={this.props.data.FirstName + ' ' + this.props.data.LastName}/>
+                </span>
                 <span className="b-connection__name-info">{this.state.fullName}</span>
                 <a className="b-connection__link" href={this.props.data.Link} />
         {this.state.isExpanded ?

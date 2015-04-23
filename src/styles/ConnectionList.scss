@@ -11,7 +11,7 @@
 }
 
 .b-connection-item {
-    padding: 0 10px;
+    padding: 4px 8px;
 }
 
 .b-connection-item__small {
@@ -29,7 +29,7 @@
 
     .b-popup {
         right: -10px;
-        top: 30px;
+        top: 20px;
         left: initial;
     }
 }
@@ -54,4 +54,36 @@
     overflow: hidden;
     width: 110px;
     display: inline-block;
+}
+
+.b-connection-list__footer {
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+    .b-connection__avatar {
+        width: 16px;
+        height: 16px;
+        background-color: #ccc;
+    }
+    .b-avatar-border {
+        width: 22px;
+        height: 22px;
+    }
+    .b-avatar-border_double_true {
+        width: 28px;
+        height: 28px;
+    }
+
+}
+
+.b-help-link{
+    color:#666;
+    text-decoration: none;
+    padding: 0 8px;
+
+    &:visited,&:hover{
+        color:#444;
+        text-decoration: underline;
+    }
 }
