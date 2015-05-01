@@ -126,7 +126,7 @@ var ChromeApp = function () {
         log('searching: ', searchTerm);
         initSearchBar();
         React.render(
-            <SearchBar searchTerm={searchTerm} onInvite={sendInvite} />,
+            <SearchBar searchTerm={searchTerm} />,
             document.querySelector('.b-search-bar')
         );
     }

@@ -1,22 +1,28 @@
-.b-invite-button {
+.b-invite-button
+{
     flex: 0 0 70px;
-
 }
 
-.b-invite-button__state_active{
-    border: none;
+.b-invite-button__state_active
+{
     color: #17c;
-    background: transparent;
+    border: none;
     outline: 0;
+    background: transparent;
+
+    curson: pointer;
 }
 
-.b-invite-button__state_passive {
-    background: url(../images/logo.png);
+.b-invite-button__state_passive
+{
+    display: inline-block;
+
     width: 24px;
     height: 24px;
-    display: inline-block;
-    background-size: contain;
+    margin: 8px;
+
+    background: url(../images/logo.png);
     background-repeat: no-repeat;
     background-position: center center;
-    margin: 8px;
+    background-size: contain;
 }

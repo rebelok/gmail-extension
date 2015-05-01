@@ -25,7 +25,7 @@ var SearchResultList = React.createClass({
             return (
                 <div key={person.Id}>
                     {additional}
-                    <Person person={person} onInvite={this.props.onInvite}/>
+                    <Person person={person} />
                 </div>
             );
         }.bind(this));

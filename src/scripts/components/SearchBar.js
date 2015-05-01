@@ -40,7 +40,7 @@ var SearchBar = React.createClass({
         if (this.state.isSearching) {
             searchBarContent = <SearchInProgress />;
         } else if (this.state.hasResults) {
-            searchBarContent = <SearchResultList total={this.state.resultsCount} onInvite={this.props.onInvite} showAllUrl={strings.get('link__more_results') + this.props.searchTerm} data={this.state.data.Persons}/>;
+            searchBarContent = <SearchResultList total={this.state.resultsCount} showAllUrl={strings.get('link__more_results') + this.props.searchTerm} data={this.state.data.Persons}/>;
         } else {
             searchBarContent = <NoResult mainUrl={this.props.mainUrl}/>;
         }

@@ -1,13 +1,13 @@
 'use strict';
 
-var React         = require('react/addons'),
-    $             = require('../vendor/jquery.js'),
-    PersonDetails = require('./PersonDetails'),
-    strings       = require('./Strings')(),
+var React          = require('react/addons'),
+    $              = require('../vendor/jquery.js'),
+    PersonDetails  = require('./PersonDetails'),
+    strings        = require('./Strings')(),
     ConnectionList = require('./ConnectionList'),
     InviteButton   = require('./InviteButton'),
     EmailList      = require('./EmailList'),
-    log           = console.log.bind(console, strings.get('app_name') + ': ');
+    log            = console.log.bind(console, strings.get('app_name') + ': ');
 
 require('styles/SideBar.css');
 
@@ -49,6 +49,26 @@ var SideBar = React.createClass({
         return <span>{phone}</span>;
     },
     render                   : function () {
+        var connectionTitle;
+        if (this.state.data) {
+            switch (this.state.data.Proximity) {
+                case 1:
+                    connectionTitle = <h2 className="b-connections__title">
+                        You know {this.state.data.FirstName} directly
+                        <br/>
+                        Your shared connections are:
+                    </h2>;
+                    break;
+                case 2:
+                    connectionTitle = <h2 className="b-connections__title">
+                        You know {this.state.data.FirstName} through:
+                    </h2>;
+                    break;
+                case 0:
+
+                    break;
+            }
+        }
         return (
             this.state.data ?
                 <div>
@@ -64,13 +84,11 @@ var SideBar = React.createClass({
                     </div>
                     : null}
                     <div className="b-connections__wrapper">
-                        <h2 className="b-connections__title">
-                        You know {this.state.data.FirstName} through
-                        </h2>
+                        {connectionTitle}
                         <ConnectionList data={this.state.data.Connections} />
                     </div>
                     <div className="b-sidebar__footer">
-                        <InviteButton emails={this.state.data.Emails} canInvite={this.state.data.CanInvite} onInvite={this.props.onInvite} />
+                        <InviteButton emails={this.state.data.Emails} canInvite={this.state.data.CanInvite} />
 
                         <a className="b-link__logo" href={strings.get('main_url')}>
                             {strings.get('app_name')}
