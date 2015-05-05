@@ -12,10 +12,22 @@ var ConnectionPreview = React.createClass({
         this.setPopupState(!this.state.open);
     },
     render     : function () {
-        var style = {backgroundImage: 'url('+this.props.data.AvatarUrl+')'};
+        var style = {backgroundImage: 'url(' + this.props.data.AvatarUrl + ')'};
+        if(this.props.data.Color==='greens'){
+            style.borderColor = 'green';
+        }
+        var avatarStyle = '';
+        switch (this.props.data.Proximity) {
+            case 1:
+                avatarStyle = 'b-avatar-border';
+                break;
+            case 2:
+                avatarStyle = 'b-avatar-border b-avatar-border_style_dashed';
+                break;
+        }
         return (
             <div className={this.state.open ? 'b-connection-preview b-connection-preview__expanded' : 'b-connection-preview'}>
-                <span className="b-avatar-border">
+                <span className={avatarStyle}>
                     <span onClick={this.togglePopup} style={style} className="b-connection__avatar" title={this.props.data.FirstName + ' ' + this.props.data.LastName}/>
                 </span>
                 {

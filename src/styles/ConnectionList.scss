@@ -66,6 +66,7 @@
         width: 16px;
         height: 16px;
         background-color: #ccc;
+        flex: 0 0 auto;
     }
     .b-avatar-border {
         width: 22px;
@@ -80,11 +81,10 @@
 
 .b-help-link{
     color:#666;
-    text-decoration: none;
+    text-decoration: underline;
     padding: 0 8px;
 
     &:visited,&:hover{
         color:#444;
-        text-decoration: underline;
     }
 }

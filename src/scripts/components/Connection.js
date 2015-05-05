@@ -12,25 +12,34 @@ var Connection = React.createClass({
     },
     getInitialState: function () {
         return {
-            isExpanded: false,
-            showInvite: this.props.data.Proximity === 0,
-            fullName  : this.props.data.FirstName + ' ' + this.props.data.LastName
+            isExpanded: false
         };
     },
     render         : function () {
         var style = {backgroundImage: 'url(' + this.props.data.AvatarUrl + ')'};
-
+        if(this.props.data.Color==='greens'){
+            style.borderColor = 'green';
+        }
+        var avatarStyle = '';
+        switch (this.props.data.Proximity) {
+            case 1:
+                avatarStyle = 'b-avatar-border';
+                break;
+            case 2:
+                avatarStyle = 'b-avatar-border b-avatar-border_style_dashed';
+                break;
+        }
         return (
             <div className="b-connection">
-                <span className="b-avatar-border">
+                <span className={avatarStyle}>
                     <span onClick={this.togglePopup}  style={style}  className="b-connection__avatar" title={this.props.data.FirstName + ' ' + this.props.data.LastName}/>
                 </span>
-                <span className="b-connection__name-info">{this.state.fullName}</span>
+                <span className="b-connection__name-info">{this.props.data.FirstName + ' ' + this.props.data.LastName}</span>
                 <a className="b-connection__link" href={this.props.data.Link} />
         {this.state.isExpanded ?
             <div className="b-connection__details">
                 <div className="b-connection__avatar-wrapper">
-                    <img className="b-connection__avatar" src={this.props.avatar} alt={this.props.fullName} />
+                    <img className="b-connection__avatar" src={this.props.avatar} alt={this.props.data.FirstName + ' ' + this.props.data.LastName} />
                 </div>
                 <div className="b-connection__link-wrapper">
                     <a className="b-connection__link" href={this.props.data.url} />
@@ -49,7 +58,7 @@ var Connection = React.createClass({
                 <div className="b-connection__info">
                         {this.props.data.info}
                 </div>
-                {this.state.showInvite ?
+                {this.props.data.Proximity === 0 ?
                     <div className="b-connection__invite">
                         <a className="b-connection__invite-button" href={this.props.data.inviteUrl}>Invite</a>
                     </div>

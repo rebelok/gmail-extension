@@ -1,5 +1,8 @@
-.b-search-bar__content
-{
+.b-search-bar {
+    position: relative;
+}
+
+.b-search-bar__content {
     font-size: 11px;
 
     padding: 0 0 10px;
@@ -15,15 +18,14 @@
     background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
 }
 
-.b-search-bar__content_searching_yes
-{
+.b-search-bar__content_searching_yes {
     @extend .b-search-bar__content;
 
     line-height: 46px;
 
     height: 46px;
     margin: 8px 0;
-    padding:0;
+    padding: 0;
 
     text-align: center;
 

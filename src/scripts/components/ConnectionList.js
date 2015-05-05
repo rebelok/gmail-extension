@@ -44,17 +44,13 @@ var ConnectionList = React.createClass({
                             <div className="b-popup">
                                 <ul className="b-connections-list b-connections-list__expanded"> {connections} </ul>
                                 <div className="b-connection-list__footer">
-                                    <span className="b-avatar-border_double_true">
-                                        <span className="b-avatar-border">
-                                            <span className="b-connection__avatar"></span>
-                                        </span>
-                                    </span>
-                                    <span className="b-avatar-border">
+                                   <span className="b-avatar-border">
                                         <span className="b-connection__avatar"></span>
                                     </span>
                                     <span className="b-avatar-border b-avatar-border_style_dashed">
                                         <span className="b-connection__avatar"></span>
                                     </span>
+                                    <span className="b-connection__avatar"></span>
                                     <a className="b-help-link" href={strings.get('link__circles__learnmore')}>Circles... huh?</a>
                                 </div>
                             </div>

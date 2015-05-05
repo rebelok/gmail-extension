@@ -73,12 +73,12 @@ var SideBar = React.createClass({
             this.state.data ?
                 <div>
                     <PersonDetails person={this.state.data} />
-                      {this.state.data.Phones.length ?
+                      {this.state.data.Phones && this.state.data.Phones.length ?
                           <div className="b-expandable-list">
                               <EmailList data={this.state.data.Phones} template={this.getPhoneItem}/>
                           </div>
                           : null}
-                {this.state.data.Emails.length ?
+                {this.state.data.Emails&&this.state.data.Emails.length ?
                     <div className="b-expandable-list">
                         <EmailList data={this.state.data.Emails} template={this.getEmailLink}/>
                     </div>

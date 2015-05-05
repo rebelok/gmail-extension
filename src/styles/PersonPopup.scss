@@ -3,6 +3,11 @@
     font-size: 11px;
     width: 200px;
 
+    .b-person-details__text{
+        padding: 8px 8px 8px 0;
+        max-width: 130px;
+    }
+
     .b-avatar {
         flex: 0 0 32px;
     }
@@ -20,6 +25,9 @@
     .b-person-details__name{
         font-size: 12px;
         line-height: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
 }

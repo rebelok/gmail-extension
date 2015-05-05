@@ -4,6 +4,7 @@ var React          = require('react/addons'),
     Avatar         = require('./Avatar'),
     ConnectionList = require('./ConnectionList'),
     InviteButton   = require('./InviteButton'),
+    IntroductionButton   = require('./IntroductionButton'),
     EmailList      = require('./EmailList');
 
 require('styles/Person.css');
@@ -22,7 +23,10 @@ var Person = React.createClass({
         return (
             <div className="b-person">
                 <Avatar url={this.props.person.AvatarUrl} fullName={this.state.fullName} />
+            {this.props.person.Proximity === 0 ?
+                <IntroductionButton person={this.props.person}/>:
                 <InviteButton emails={this.props.person.Emails} canInvite={this.props.person.CanInvite} />
+                }
                 <span className="b-person-name" title={this.state.fullName}>
                     {this.state.fullName}
                 </span>
