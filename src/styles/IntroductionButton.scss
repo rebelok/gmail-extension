@@ -1,43 +1,55 @@
-.b-intro {
+.b-intro
+{
     z-index: 1;
+
+    flex: 0 0 125px;
 }
 
-.b-intro_state_open {
+.b-intro_state_open
+{
     z-index: 2;
 }
 
-.b-intro__button {
-    flex: 0 0 70px;
+.b-intro__button
+{
+    cursor: pointer;
+
     color: #17c;
     border: none;
     outline: 0;
     background: transparent;
-
-    cursor: pointer;
 }
 
 $color-blue: #4182f5;
 $color-grey: #e6e6e6;
-.b-action-button {
-    border-radius: 2px;
-    cursor: default;
+.b-action-button
+{
     font-size: 11px;
-    text-align: center;
-    height: 27px;
     line-height: 27px;
+
     min-width: 54px;
-    outline: 0;
-    padding: 0 8px;
-    box-shadow: none;
-    background-image: -webkit-linear-gradient(top, $color-grey, darken($color-grey, 5%));
-    border: 1px solid transparent;
-    color: #333;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    height: 27px;
     margin: 0 8px;
+    padding: 0 8px;
+
+    cursor: default;
+    text-align: center;
+
+    color: #333;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    outline: 0;
+    background-image: -webkit-linear-gradient(top, $color-grey, darken($color-grey, 5%));
+    box-shadow: none;
+    text-shadow: 0 1px rgba(0, 0, 0, .1);
 }
 
-.b-action-button_color_blue{
-    background-image: -webkit-linear-gradient(top, $color-blue, darken($color-blue, 5%));
+.b-action-button_color_blue
+{
     color: #fff;
+    background-image: -webkit-linear-gradient(top, $color-blue, darken($color-blue, 5%));
 
+    &[disabled]{
+        background: #91b6fa;
+    }
 }

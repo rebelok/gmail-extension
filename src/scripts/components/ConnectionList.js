@@ -25,7 +25,8 @@ var ConnectionList = React.createClass({
                 </li>
             );
         });
-        var connections = this.props.data.map(function (connection) {
+        var restList = this.props.data.length > 4 ? this.props.data.slice(4, this.props.data.length) : [];
+        var connections = restList.map(function (connection) {
             return (
                 <li key={connection.Id} className="b-connection-item__full">
                     <Connection key={connection.Id}  data={connection} short={false}/>
@@ -44,7 +45,7 @@ var ConnectionList = React.createClass({
                             <div className="b-popup">
                                 <ul className="b-connections-list b-connections-list__expanded"> {connections} </ul>
                                 <div className="b-connection-list__footer">
-                                   <span className="b-avatar-border">
+                                    <span className="b-avatar-border">
                                         <span className="b-connection__avatar"></span>
                                     </span>
                                     <span className="b-avatar-border b-avatar-border_style_dashed">

@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react/addons'),
+    $ = require('../vendor/jquery.js'),
     strings = require('./Strings')();
 
 require('styles/InviteButton.css');

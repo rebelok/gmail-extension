@@ -21,7 +21,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50%;
-    border: 1px solid gray;
+    border: 2px solid gray;
 
     margin: 2px;
 }
@@ -30,8 +30,8 @@
     border: 1px solid green;
     border-radius: 50%;
     display: inline-block;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
 
     margin: 2px;
 
@@ -39,8 +39,8 @@
 
 .b-avatar-border_double_true{
     @extend .b-avatar-border;
-    height: 44px;
-    width: 44px;
+    height: 46px;
+    width: 46px;
 }
 
 .b-avatar-border_style_dashed {
