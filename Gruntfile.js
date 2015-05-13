@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                 devtool: true,
                 debug  : true,
 
-                stats  : {
+                stats: {
                     colors : true,
                     reasons: true
                 }
@@ -44,6 +44,18 @@ module.exports = function (grunt) {
             allFiles: {
                 files: ['<%= pkg.src %>/styles/{,*/}*.scss', '<%= pkg.src %>/scripts/{,*/}*.js'],
                 tasks: ['buildDev']
+            }
+        },
+        sass   : {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd   : '<%= pkg.src %>/styles/',
+                    src   : '*.scss',
+                    dest  : '<%= pkg.src %>/styles/',
+                    ext   : '.css'
+                }]
+
             }
         },
         jshint : {
@@ -161,9 +173,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['karma']);
 
-    grunt.registerTask('build', ['clean', 'copy', 'webpack:dist', 'chromeManifest:dist', 'compress']);
+    grunt.registerTask('build', ['clean', 'sass', 'copy', 'webpack:dist', 'chromeManifest:dist', 'compress']);
 
-    grunt.registerTask('buildDev', ['clean', 'copy', 'webpack:dev']);
+    grunt.registerTask('buildDev', ['clean', 'sass', 'copy', 'webpack:dev']);
 
     grunt.registerTask('default', ['build']);
 };
