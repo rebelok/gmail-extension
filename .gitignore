@@ -36,3 +36,4 @@ dist
 /src/_locales
 /package/
 npm-debug.log
+.idea/
