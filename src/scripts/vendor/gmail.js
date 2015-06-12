@@ -1821,6 +1821,11 @@ var Gmail = function(localJQuery) {
 
         button.html(content_html);
         button.click(onClickFunction);
+        button.hover(function(){
+            $(this).addClass('T-I-JW');
+        }, function () {
+            $(this).removeClass('T-I-JW');
+        })
 
         var content = $(document.createElement('div'));
         content.attr('class','asa');

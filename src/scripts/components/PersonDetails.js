@@ -11,12 +11,18 @@ var PersonDetails = React.createClass({
     render      : function () {
         return (
             <div className="b-person-details">
-                <SiteLink url={this.props.person.Link} title={this.props.person.FirstName + ' ' + this.props.person.LastName} />
+                { this.props.person.Proximity != 0 &&
+                    <SiteLink url={this.props.person.Link}
+                              title={this.props.person.FirstName + ' ' + this.props.person.LastName}/>
+                }
                 <div className="b-person-details__main">
-                    <Avatar big={true} url={this.props.person.AvatarUrl} fullname={this.props.person.FirstName + ' ' + this.props.person.LastName}/>
+                    <Avatar big={true} url={this.props.person.AvatarUrl} fullname={this.props.person.FirstName + ' ' + this.props.person.LastName} id={this.props.person.Id}/>
                     <div className="b-person-details__text">
                         <div className="b-person-details__name">
-                          {this.props.person.FirstName + ' ' + this.props.person.LastName}
+                          {this.props.person.FirstName + ' '}
+                        </div>
+                        <div className="b-person-details__name">
+                            {this.props.person.LastName}
                         </div>
                     {this.props.person.Position ?
                         <div className="b-person-details__position">

@@ -35,9 +35,10 @@ var SearchResultList = React.createClass({
                     <div className="b-search-result__header">
                         <span className="b-showing-label">Showing {this.state.showing} out of {this.props.total}</span>
 
-                        <a className="b-link" href={this.props.showAllUrl ? this.props.showAllUrl : '#'}>
-                        View all
-                        </a>
+                        { this.state.showing != this.props.total &&
+                            <a className="b-link" href={this.props.showAllUrl ? this.props.showAllUrl : '#'}>
+                                View all
+                            </a>  }
 
                         <a className="b-link__logo" href={this.props.mainUrl}>
                             {strings.get('app_name')}

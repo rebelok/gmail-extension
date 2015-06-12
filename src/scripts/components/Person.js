@@ -22,7 +22,8 @@ var Person = React.createClass({
     render         : function () {
         return (
             <div className="b-person">
-                <Avatar url={this.props.person.AvatarUrl} fullName={this.state.fullName} />
+                <Avatar url={this.props.person.AvatarUrl} fullName={this.state.fullName} id={this.props.person.Id}
+                        isClickable={this.props.person.Proximity != 0} />
             {this.props.person.Proximity === 0 ?
                 <IntroductionButton person={this.props.person}/>:
                 <InviteButton emails={this.props.person.Emails} canInvite={this.props.person.CanInvite} />
@@ -36,8 +37,19 @@ var Person = React.createClass({
                 <span className="b-company" title={this.props.person.CompanyName}>
                     {this.props.person.CompanyName}
                 </span>
-                <EmailList data={this.props.person.Emails} template={this.getEmailLink}/>
-                <EmailList data={this.props.person.Phones} template={this.getPhoneItem}/>
+
+                {this.props.person.Proximity === 0 ?
+                    <div className="b-info-row">
+                        <span>Hidden</span>
+                    </div> :
+                    <EmailList data={this.props.person.Emails} template={this.getEmailLink}/>
+                }
+                {this.props.person.Proximity === 0 ?
+                    <div className="b-info-row">
+                        <span>Hidden</span>
+                    </div> :
+                    <EmailList data={this.props.person.Phones} template={this.getPhoneItem}/>
+                }
                 <drop>
                     <ConnectionList data={this.props.person.Connections} />
                 </drop>

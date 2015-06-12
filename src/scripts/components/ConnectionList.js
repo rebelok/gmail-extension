@@ -43,6 +43,9 @@ var ConnectionList = React.createClass({
                         <button className="b-expandable-button" onClick={this.toggleExpand}/>
                         { this.state.open ?
                             <div className="b-popup">
+                                <div className="b-connection-list__header">
+                                    <span>... and also</span>
+                                </div>
                                 <ul className="b-connections-list b-connections-list__expanded"> {connections} </ul>
                                 <div className="b-connection-list__footer">
                                     <span className="b-avatar-border">

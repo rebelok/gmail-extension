@@ -6,6 +6,7 @@ require('styles/common.css');
 var React            = require('react/addons'),
     $                = require('../vendor/jquery.js'),
     NoResult         = require('./NoResult'),
+    Unauthorized     = require('./Unauthorized'),
     SearchInProgress = require('./SearchInProgress'),
     SearchResultList = require('./SearchResultList'),
     strings          = require('./Strings')(),
@@ -17,7 +18,7 @@ var SearchBar = React.createClass({
     },
     componentDidMount: function () {
         $.ajax({
-            url      : strings.get('search_url') + this.props.searchTerm,
+            url      : strings.get('search_url') + this.props.searchTerm + '&counting=true&take=3',
             dataType : 'json',
             xhrFields: {withCredentials: true},
 
@@ -29,7 +30,7 @@ var SearchBar = React.createClass({
             }.bind(this),
 
             error: function (xhr, status, err) {
-                this.setState({isSearching: false, hasResults: false, data: [], resultsCount: false})
+                this.setState({isSearching: false, hasResults: false, data: [], resultsCount: false, isUnauthorized: err.toString() == 'Unauthorized'})
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
@@ -41,7 +42,9 @@ var SearchBar = React.createClass({
             searchBarContent = <SearchInProgress />;
         } else if (this.state.hasResults) {
             searchBarContent = <SearchResultList total={this.state.resultsCount} showAllUrl={strings.get('link__more_results') + this.props.searchTerm} data={this.state.data.Persons}/>;
-        } else {
+        } else if(this.state.isUnauthorized) {
+            searchBarContent = <Unauthorized mainUrl={this.props.mainUrl}/>;
+        }else {
             searchBarContent = <NoResult mainUrl={this.props.mainUrl}/>;
         }
         log('render - searchBar', searchBarContent, this.state);
