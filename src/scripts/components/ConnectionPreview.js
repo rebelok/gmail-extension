@@ -28,7 +28,13 @@ var ConnectionPreview = React.createClass({
         return (
             <div className={this.state.open ? 'b-connection-preview b-connection-preview__expanded' : 'b-connection-preview'}>
                 <span className={avatarStyle}>
-                    <span onClick={this.togglePopup} style={style} className="b-connection__avatar" title={this.props.data.FirstName + ' ' + this.props.data.LastName}/>
+                    <span onClick={this.togglePopup} style={style} className="b-connection__avatar" title={this.props.data.FirstName + ' ' + this.props.data.LastName}>
+                        {
+                            this.props.data.EmptyAvatar ?
+                            <span className='b-empty-initials'>{this.props.data.FirstName == null ? '':this.props.data.FirstName[0] }
+                                {this.props.data.LastName == null ? '':this.props.data.LastName[0] }</span> : null
+                        }
+                    </span>
                 </span>
                 {
                     this.state.open ?

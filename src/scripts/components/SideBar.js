@@ -13,16 +13,55 @@ var React          = require('react/addons'),
 require('styles/SideBar.css');
 
 var SideBar = React.createClass({
+    isDataLoaded : false,
+    avatarUrl : null,
+    avatarUpdated : false,
     getInitialState          : function () {
         return {};
     },
     componentDidMount        : function () {
-        this.update(this.props.email)
+        var email = this.props.email, self = this;
+        var dom = this.refs.insightfulWidget.getDOMNode();
+
+        $(dom).parent().parent().on('DOMSubtreeModified', function(){
+
+            var el = $("img[jid='" + email + "']");
+
+            if(el.length > 0 && $(el[0]).attr('src').indexOf('profile_mask2.png') <= 0){
+                $(dom).parent().parent().off('DOMSubtreeModified');
+                self.avatarUrl = $(el[0]).attr('src');
+                self.updateAvatar();
+            }
+        });
+
+        this.update(this.props.email);
+    },
+    updateAvatar : function(){
+        if(!this.isDataLoaded ||  this.avatarUpdated || this.avatarUrl == null || this.avatarUrl.indexOf('profile_mask2.png') > 0){
+            return;
+        }
+
+        this.avatarUpdated = true;
+
+        if(this.state.data.EmptyAvatar) {
+
+            $.ajax({
+                method: 'PUT',
+                url      : strings.get('main_url') + '/api/extension?',
+                dataType : 'json',
+                xhrFields: {withCredentials: true},
+                data : { Id : this.state.data.Id , Url : this.avatarUrl, Email: this.props.email }
+            });
+
+            console.log("sending new avatar for " + this.state.data.Id, this.avatarUrl);
+        }
     },
     componentWillReceiveProps: function (nextProps) {
         if (this.props.email !== nextProps.email) {
-            this.update(nextProps.email)
+            this.update(nextProps.email);
         }
+    },
+    componentWillUnmount: function() {
     },
     update                   : function (email) {
         $.ajax({
@@ -31,10 +70,12 @@ var SideBar = React.createClass({
             xhrFields: {withCredentials: true},
 
             success: function (data) {
+                this.isDataLoaded = true;
                 var hasResults = !!data.Persons;
                 var person = data.Persons[0];
                 log('data=%O,hasResults=%O,resultCount=%d', data, hasResults);
                 this.setState({data: person, hasResults: hasResults, isSearching: false});
+                this.updateAvatar();
             }.bind(this),
 
             error: function (xhr, status, err) {
@@ -57,7 +98,11 @@ var SideBar = React.createClass({
                     connectionTitle = <h2 className="b-connections__title">
                         You know {this.state.data.FirstName} directly
                         <br/>
-                        Your shared connections are:
+                        {
+                            this.state.data.Connections.length == 0 ?
+                            'You do not have any shared connections' :
+                            'Your shared connections are:'
+                        }
                     </h2>;
                     break;
                 case 2:
@@ -72,7 +117,7 @@ var SideBar = React.createClass({
         }
 
         var content = this.state.data ?
-            <div>
+            <div ref="insightfulWidget">
                 <PersonDetails person={this.state.data} />
                 {this.state.data.Phones && this.state.data.Phones.length ?
                     <div className="b-expandable-list">
@@ -99,7 +144,7 @@ var SideBar = React.createClass({
             :
             isUnauthorized ?
 
-                <div>
+                <div ref="insightfulWidget">
                     <p className="b-no-result">You are not authorized.<br/> Please <a className="b-link" target="_blank"
                                                                                       href={strings.get('main_url') + '/Login' }>login</a> to use service</p>
 
@@ -108,7 +153,7 @@ var SideBar = React.createClass({
                             {strings.get('app_name')}
                         </a>
                     </div >
-                </div> : null
+                </div> : <div ref="insightfulWidget"> </div>
 
         return (content);
     }

@@ -1,3 +1,13 @@
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
 .SearchInProgress {
     border: 1px dashed #f00;
 }
@@ -20,5 +30,8 @@
     margin: -10px 0 0 -80px;
     top: 50%;
     background-size: contain;
-
+    -webkit-animation-name:             rotate;
+    -webkit-animation-duration:         2s;
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-transition-timing-function: linear;
 }

@@ -13,15 +13,15 @@ var IntroductionPopup = React.createClass({
     },
     sendRequest    : function sendRequest() {
         $.ajax({
-            url      : strings.get('link__introduce'),
-            type     : 'POST',
-            data     : {
-                introduceViewModel: {
-                    UserId     : this.props.person.Id,
-                    ToUserId   : '',
-                    Description: this.state.value
-                }
-            },
+            url        : strings.get('link__introduce'),
+            type       : 'POST',
+            contentType: "application/json; charset=utf-8",
+            dataType   : "json",
+            data       : JSON.stringify({
+                UserId     : 1,
+                ToUserId   : this.props.person.Id,
+                Description: this.state.value
+            }),
             xhrFields: {withCredentials: true}
         }).success(function(){
             console.log('request sent');

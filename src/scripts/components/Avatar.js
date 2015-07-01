@@ -10,13 +10,10 @@ var Avatar = React.createClass({
         return (
             <div className="b-avatar">
                 {
-                    this.props.isClickable ?
                     <a target="_blank" href={strings.get('main_url') + '/person/index/' + this.props.id}>
                         <img className={this.props.big ? 'b-avatar__image_size_big' : 'b-avatar__image'}
                              src={this.props.url} alt={this.props.fullName} title={this.props.fullName}/>
-                    </a> :
-                        <img className={this.props.big ? 'b-avatar__image_size_big' : 'b-avatar__image'}
-                             src={this.props.url} alt={this.props.fullName} title={this.props.fullName}/>
+                    </a>
                 }
             </div>
         );

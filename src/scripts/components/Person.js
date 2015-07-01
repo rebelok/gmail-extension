@@ -11,7 +11,7 @@ require('styles/Person.css');
 
 var Person = React.createClass({
     getInitialState: function () {
-        return {fullName: this.props.person.FirstName + ' ' + this.props.person.LastName}
+        return {fullName: (this.props.person.FirstName == null ? '' : this.props.person.FirstName) + ' ' + (this.props.person.LastName == null ? '' : this.props.person.LastName)}
     },
     getEmailLink   : function (email) {
         return <a title={email} className="b-link-email" href={'mailto://' + email}>{email}</a>;
