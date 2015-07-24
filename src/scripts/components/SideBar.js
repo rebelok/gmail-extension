@@ -1,14 +1,15 @@
 'use strict';
 
-var React          = require('react/addons'),
-    $              = require('../vendor/jquery.js'),
-    PersonDetails  = require('./PersonDetails'),
-    strings        = require('./Strings')(),
-    ConnectionList = require('./ConnectionList'),
-    InviteButton   = require('./InviteButton'),
-    EmailList      = require('./EmailList'),
-    Unauthorized   = require('./Unauthorized'),
-    log            = console.log.bind(console, strings.get('app_name') + ': ');
+var React            = require('react/addons'),
+    $                = require('../vendor/jquery.js'),
+    PersonDetails    = require('./PersonDetails'),
+    strings          = require('./Strings')(),
+    ConnectionList   = require('./ConnectionList'),
+    InviteButton     = require('./InviteButton'),
+    EmailList        = require('./EmailList'),
+    Unauthorized     = require('./Unauthorized'),
+    FriendshipButton = require('./FriendshipButton'),
+    log              = console.log.bind(console, strings.get('app_name') + ': ');
 
 require('styles/SideBar.css');
 
@@ -96,13 +97,19 @@ var SideBar = React.createClass({
             switch (this.state.data.Proximity) {
                 case 1:
                     connectionTitle = <h2 className="b-connections__title">
-                        You know {this.state.data.FirstName} directly
+                        <span className='b-person-relations row-space-1'>{ this.state.data.IsFriend == true ?
+                            this.state.data.FirstName + ' is your friend' :
+                            'You know ' + this.state.data.FirstName + ' directly'
+                        },</span>
                         <br/>
-                        {
+
+                        <FriendshipButton FriendshipRequest={this.state.data.FriendshipRequest} Id={this.state.data.Id} canBeFriends={this.state.data.IsFriend == false} />
+
+                        <span className='b-person-relations row-space-top-1'>{
                             this.state.data.Connections.length == 0 ?
                             'You do not have any shared connections' :
                             'Your shared connections are:'
-                        }
+                        }</span>
                     </h2>;
                     break;
                 case 2:
